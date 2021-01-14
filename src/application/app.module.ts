@@ -5,10 +5,12 @@ import { AppService } from '../app.service';
 import { join } from 'path'
 import { DatabaseModule } from './infrastructure/config/database.config';
 import { AgamaModule } from './infrastructure/modules/agama.module';
+import { RedisModule } from './infrastructure/config/redis.config';
 
 @Module({
   imports: [
     DatabaseModule,
+    RedisModule,
     GraphQLFederationModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/resources/schema.gql'),
       playground: true,
