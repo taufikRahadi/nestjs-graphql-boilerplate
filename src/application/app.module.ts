@@ -3,9 +3,9 @@ import { GraphQLFederationModule } from '@nestjs/graphql';
 import { AppController } from '../app.controller';
 import { AppService } from '../app.service';
 import { join } from 'path'
-import { DatabaseModule } from './infrastructure/config/database.config';
-import { AgamaModule } from './infrastructure/modules/agama.module';
-import { RedisModule } from './infrastructure/config/redis.config';
+import { DatabaseModule } from '../config/database.config';
+import { AgamaModule } from './master/agama/agama.module';
+import { RedisModule } from '../config/redis.config';
 
 @Module({
   imports: [
@@ -13,6 +13,7 @@ import { RedisModule } from './infrastructure/config/redis.config';
     RedisModule,
     GraphQLFederationModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/resources/schema.gql'),
+      context: ({ req }) => ({ headers: req.headers }),
       playground: true,
       debug: false
     }),

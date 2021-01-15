@@ -1,5 +1,6 @@
 import { Field, ID, ObjectType } from "@nestjs/graphql";
-import { BaseEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity } from "./base.entity";
 
 @Entity({
   name: 'agama'
@@ -7,12 +8,6 @@ import { BaseEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, Primary
 @ObjectType()
 export class AgamaEntity extends BaseEntity {
   
-  @PrimaryGeneratedColumn({
-    name: 'id'
-  })
-  @Field(type => ID, { nullable: false })
-  id: number;
-
   @Column({
     name: 'nama',
     type: 'varchar',
@@ -21,27 +16,5 @@ export class AgamaEntity extends BaseEntity {
   })
   @Field(type => String, { nullable: false })
   name: string;
-
-
-  @CreateDateColumn({
-    type: 'timestamp',
-    name: 'created_at'
-  })
-  @Field(type => Date)
-  createdAt: Date;
-
-  @UpdateDateColumn({
-    type: 'timestamp',
-    name: 'updated_at'
-  })
-  @Field(type => Date)
-  updatedAt: Date;
-
-  @DeleteDateColumn({
-    type: 'timestamp',
-    name: 'deleted_at'
-  })
-  @Field(type => Date)
-  deletedAt: Date;
 
 }

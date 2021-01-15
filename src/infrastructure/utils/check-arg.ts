@@ -1,5 +1,5 @@
 import { NotFoundException } from "@nestjs/common";
-import { UpdateResult } from "typeorm";
+import { Like, UpdateResult } from "typeorm";
 
 export function checkPagination(obj: any) {
   const paginate = {
@@ -48,7 +48,7 @@ export function checkSearchArg(obj: any): object[] {
             delete obj[key]
         }
 
-        array.push({ [key]: value });
+        array.push({ [key]: Like(`%${value}%`) });
     }
 
     return array;

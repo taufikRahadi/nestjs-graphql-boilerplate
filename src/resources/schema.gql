@@ -14,10 +14,10 @@ directive @provides(fields: String!) on FIELD_DEFINITION
 
 type AgamaEntity {
   id: ID!
-  name: String!
   createdAt: DateTime!
   updatedAt: DateTime!
   deletedAt: DateTime!
+  name: String!
 }
 
 """
